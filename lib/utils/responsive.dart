@@ -1,4 +1,4 @@
-import 'dart:js';
+import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
 
@@ -25,9 +25,17 @@ class Responsive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    // Si votre largeur de taille est supérieure à 1100, nous la considérons comme un bureau
-    // TODO: implement build
-    throw UnimplementedError();
+    final Size _size = MediaQuery.of(context).size;
+    // Si notre largeur de taille est supérieure à 1100, alors nous la considérons comme un bureau
+    if (_size.width >= 1100) {
+      return desktop;
+      // Si notre largeur de taille est inferieur à 1100 et superieure à 850, alors nous la considérons comme une tablete
+    } else if (_size.width >= 850 && tablet != null) {
+      return tablet!;
+    }
+    // Si notre largeur de taille est inferieure à 850, alors nous la considérons comme un mobile
+    else {
+      return mobile;
+    }
   }
 }
